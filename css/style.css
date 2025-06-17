@@ -16,10 +16,16 @@ body.dark-mode {
     --button-color: #e89e1b;
 }
 
+* {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
 body, html {
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
+    font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
     font-size: 1rem;
     margin: 0;
     padding: 0;
@@ -30,19 +36,45 @@ body, html {
 header {
     background-color: var(--header-bg);
     padding: 1rem 0;
+    position: relative;
+    z-index: 10;
+    
 }
 
 header .container {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    flex-direction: column;
+}
+
+.menu-button {
+    display: none;
+    position: absolute;
+    left: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
 }
 
 .navbar {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--header-bg);
+    z-index: 99;
+}
+
+.navbar.open {
     display: flex;
-    gap: 1rem;
 }
 
 .navbar a {
@@ -51,12 +83,28 @@ header .container {
     padding: 0.5rem 1rem;
 }
 
+.navbar a:hover {
+    text-decoration: overline;
+}
+
+.menu-button {
+    display: block;
+}
+
 #themeToggle {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    right: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-color)
+}
+
+#theme-toggle {
     position: absolute;
     right: 1rem;
     top: 1rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
 }
 
 main {
@@ -67,6 +115,13 @@ footer {
     background-color: var(--footer-bg);
     margin: 0;
     padding: 1rem 0;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 a:hover {
@@ -100,6 +155,37 @@ button {
         font-size: 1.1rem;
     }
 
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        top: 0%;
+        flex-direction: row;
+        gap: 1rem;
+        background: none;
+        padding: 1rem;
+    }
+
+    .navbar a {
+        line-height: 1;
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+    #themeToggle {
+        cursor: pointer;
+
+    }
+
     .projects {
         flex-direction: row;
         flex-wrap: wrap;
@@ -109,12 +195,4 @@ button {
     .project-card {
         flex: 1 1 calc(50% - 1rem);
     }
-}
-
-@media (min-width: 1024px) {
-
-    .project-card {
-        flex: 1 1 calc(33.333% - 1rem);
-    }
-
 }
