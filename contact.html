@@ -141,7 +141,45 @@
 
     <main>
       <div class="container">
-        <p>Main</p>
+        <form
+          id="contactForm"
+          action="https://formspree.io/f/xjkroarw"
+          method="POST"
+        >
+          <div class="row">
+            <div class="field">
+              <label for="first_name">Vorname:</label>
+              <input type="text" id="first_name" name="Vorname" required />
+            </div>
+
+            <div class="field">
+              <label for="last_name">Nachname:</label>
+              <input type="text" id="last_name" name="Nachname" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Nachricht:</label>
+            <textarea
+              id="message"
+              name="Nachricht"
+              required
+              minlength="10"
+              rows="5"
+            ></textarea>
+          </div>
+
+          <input type="text" name="_gotcha" style="display: none" />
+
+          <button type="submit" id="submitBtn">Absenden</button>
+
+          <div id="formStatus" style="margin-top: 10px"></div>
+        </form>
       </div>
     </main>
 
@@ -150,6 +188,6 @@
         <p>© 2025 Kevin Gersitz</p>
       </div>
     </footer>
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>
