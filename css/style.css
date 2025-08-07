@@ -1,3 +1,6 @@
+/* ===================================
+   Variablen
+=================================== */
 :root {
     --bg-color: #f0f0f4;
     --text-color: #2a2a2a;
@@ -5,6 +8,8 @@
     --footer-bg: #d3d7e2;
     --accent-color: #446ebc;
     --button-color: #e09310;
+    --link-color: #446ebc;
+    --link-color-clicked: #7b6cb3;
 }
 
 body.dark-mode {
@@ -14,8 +19,13 @@ body.dark-mode {
     --footer-bg: #1b1b23;
     --accent-color: #7aa5e4;
     --button-color: #e89e1b;
+    --link-color: #8ab4f8;
+    --link-color-clicked: #c792ea;
 }
 
+/* ===================================
+   Grundlayout
+=================================== */
 * {
     box-sizing: border-box;
     font-family: inherit;
@@ -33,12 +43,28 @@ body, html {
     flex-direction: column;
 }
 
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+main {
+    flex: 1;
+}
+
+main .container {
+    padding: 1.5rem 1rem;
+}
+
+/* ===================================
+   Header / Navigation
+=================================== */
 header {
     background-color: var(--header-bg);
     padding: 1rem 0;
     position: relative;
     z-index: 10;
-    
 }
 
 header .container {
@@ -50,7 +76,7 @@ header .container {
 }
 
 .menu-button {
-    display: none;
+    display: block;
     position: absolute;
     left: 1rem;
     font-size: 1.5rem;
@@ -86,35 +112,19 @@ header .container {
     text-decoration: overline;
 }
 
-.menu-button {
-    display: block;
-}
-
 #themeToggle {
     position: absolute;
-    padding: 0.5rem 1rem;
     right: 1rem;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
     background: none;
     border: none;
-    color: var(--text-color)
+    color: var(--text-color);
+    cursor: pointer;
 }
 
-#theme-toggle {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-}
-
-main {
-    flex: 1;
-}
-
-main .container {
-    padding: 1.5rem 1rem;
-}
-
-
+/* ===================================
+   Footer
+=================================== */
 footer {
     background-color: var(--footer-bg);
     margin: 0;
@@ -128,10 +138,26 @@ footer .container {
     align-items: center;
 }
 
-a:hover {
-    color: var(--accent-color)
+/* ===================================
+   Links
+=================================== */
+main a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
+main a:visited {
+    color: var(--link-color-clicked);
+}
+
+main a:hover {
+    color: var(--accent-color);
+}
+
+/* ===================================
+   Buttons
+=================================== */
 button {
     background-color: var(--button-color);
     color: #2a2a2a;
@@ -142,6 +168,9 @@ button {
     cursor: pointer;
 }
 
+/* ===================================
+   Formulare
+=================================== */
 form {
     display: flex;
     flex-direction: column;
@@ -161,12 +190,9 @@ form {
     gap: 1rem;
 }
 
-.container {
-    max-width: 960px;
-    margin: auto;
-    padding: 0 1rem;
-}
-
+/* ===================================
+   Projekte
+=================================== */
 .projects {
     display: flex;
     flex-direction: column;
@@ -179,6 +205,112 @@ form {
     border-radius: 8px;
 }
 
+/* ===================================
+   Home: Hero
+=================================== */
+#home-hero {
+    padding: 2rem 1rem 1rem;
+}
+
+#home-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 .5rem 0;
+}
+
+#home-hero .lead {
+    opacity: .9;
+    max-width: 60ch;
+    margin: 0 0 1rem 0;
+}
+
+#home-hero .actions {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+
+/* ===================================
+   Home: Cards
+=================================== */
+#home-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    #home-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    display: block;
+    padding: 1rem;
+    border-radius: 10px;
+    background: color-mix(in oklab, var(--bg-color) 94%, black 6%);
+    border: 1px solid color-mix(in oklab, var(--bg-color) 80%, black 20%);
+    transition: box-shadow .2s ease;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.card:hover {
+    box-shadow: 0 0 6px 2px color-mix(in oklab, var(--accent-color) 60%, transparent);
+}
+
+.card:visited,
+.card:hover,
+.card:focus {
+    color: var(--text-color);
+}
+
+body.dark-mode .card {
+    background: color-mix(in oklab, var(--bg-color) 94%, white 6%);
+    border-color: color-mix(in oklab, var(--bg-color) 80%, white 20%);
+}
+
+.card .icon {
+    font-size: 1.6rem;
+    margin-bottom: .25rem;
+}
+
+.card h3 {
+    margin: .25rem 0;
+    font-size: 1.15rem;
+}
+
+.card p {
+    margin: 0 0 .5rem 0;
+}
+
+/* ===================================
+   Fun Fact Box
+=================================== */
+.funfact {
+    margin: 1rem auto 0;
+    padding: .9rem 1rem;
+    border-radius: 10px;
+    border-left: 6px solid var(--accent-color);
+    background: color-mix(in oklab, var(--bg-color) 92%, var(--accent-color) 8%);
+}
+
+body.dark-mode .funfact {
+    background: color-mix(in oklab, var(--bg-color) 90%, var(--accent-color) 10%);
+}
+
+/* ===================================
+   Fokus-Sichtbarkeit (Tastatur)
+=================================== */
+:where(.btn, .card-link):focus-visible {
+    outline: 2px dashed var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* ===================================
+   Media Queries
+=================================== */
 @media (min-width: 768px) {
     body {
         font-size: 1.1rem;
@@ -212,7 +344,6 @@ form {
 
     #themeToggle {
         cursor: pointer;
-
     }
 
     .row {
@@ -221,8 +352,6 @@ form {
 
     .row .field {
         flex: 1;
-        display: flex;
-        flex-direction: column;
     }
 
     .projects {
