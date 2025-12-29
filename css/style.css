@@ -13,6 +13,7 @@
 }
 
 body.dark-mode {
+    background: #23232b;
     --bg-color: #23232b;
     --text-color: #e5e5e5;
     --header-bg: #1b1b23;
